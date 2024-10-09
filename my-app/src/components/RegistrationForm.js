@@ -63,7 +63,9 @@ const RegistrationForm = () => {
             />
           </div>
           {error && <p style={{ color: 'red' }}>{error}</p>}
-          <button type="submit">Register</button>
+          <button type="submit" 
+          
+          >Register</button>
         </form>
       ) : (
         <p>Thank you for contacting us! We will get back to you soon.</p>

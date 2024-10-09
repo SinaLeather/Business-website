@@ -5,7 +5,12 @@ import { faInstagram, faTelegram, faWhatsapp } from '@fortawesome/free-brands-sv
 
 
 
+
+
 const Navbar = () => {
+
+
+  
   return (
     <nav className=" bg-white p-4 shadow">
       <div className="container mx-auto flex justify-between items-center ">
