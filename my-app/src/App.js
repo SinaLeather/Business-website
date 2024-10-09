@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from './components/NavBar';
+import { BrowserRouter as Router, Route, Routes,Link } from 'react-router-dom';
+import RegistrationForm from './components/RegistrationForm';
 
 
 const App = () => {
@@ -8,9 +10,19 @@ const App = () => {
   const handleButtonClick = () => {
     setShowForm(true);
   };
-//heloo
+
   return (
-    <Navbar/>
+   <>
+     
+    <Router>
+    <Routes>
+     
+      <Route path="/register" element={<RegistrationForm />} />
+      <Route path="/" element={<Navbar />} />
+    </Routes>
+  </Router>
+  
+   </>
   );
 };
 
