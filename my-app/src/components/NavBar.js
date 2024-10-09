@@ -4,10 +4,6 @@ import { faInstagram, faTelegram, faWhatsapp } from '@fortawesome/free-brands-sv
 import { useNavigate } from 'react-router-dom';
 
 
-
-
-
-
 const Navbar = () => {
     const navigate = useNavigate();
     const handleSubscribe = () => {
