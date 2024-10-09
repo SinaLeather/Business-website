@@ -5,24 +5,23 @@ import RegistrationForm from './components/RegistrationForm';
 import HeroSecition from './components/hero';
 import CategorySection from './components/category.';
 import Card from './components/card';
+import Testimonial from './components/Testimonial';
 
 
 const App = () => {
   return (
-   <>
-     
-    <Router>
-    <Routes>
-      <Route path="/register" element={<RegistrationForm />} />
-      <Route path="/" element={<Navbar />} />
-    </Routes>
+   <>  
+  <Router>
+  <Routes>
+    <Route path="/register" element={<RegistrationForm />} />
+    <Route path="/" element={<Navbar />} />
+  </Routes>
   </Router>
   ,
   <HeroSecition />,
   <CategorySection />,
   <Card />,
-
-  
+  <Testimonial />,
    </>
   );
 };
