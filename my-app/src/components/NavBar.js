@@ -8,11 +8,6 @@ import { faInstagram, faTelegram, faWhatsapp } from '@fortawesome/free-brands-sv
 
 
 const Navbar = () => {
-<<<<<<< HEAD
-
-
-  
-=======
     const RegistrationForm = () => {
         // Example of what you can do when the button is clicked
         console.log('Subscribe button clicked!');
@@ -20,7 +15,6 @@ const Navbar = () => {
         // You can also trigger form modal opening logic here
       };
       
->>>>>>> f766bb314a1ed7b9d8ec187a64d2f877acfa40fd
   return (
     <nav className=" bg-white p-4 shadow">
       <div className="container mx-auto flex justify-between items-center ">
@@ -43,7 +37,6 @@ const Navbar = () => {
           </a>
 
             <button type="button" class=" p-1 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"  onClick={RegistrationForm}> subscribe </button>
-//kk
         </div>
       </div>
     </nav>
