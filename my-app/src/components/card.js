@@ -25,37 +25,38 @@ const Card = () => {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div>
-      <ul>
-        {data.map((item) => (
+    
+    <div className="flex flex-wrap gap-6 p-6">
+    {data.map((item) => (
+      <div
+        key={item.id}
+        className="w-[340px] bg-blue-200 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 ease-in-out dark:bg-gray-900"
+      >
+        {/* Card Image */}
+        <div className="relative h-48">
+          <img
+            className="w-full h-full object-cover"
+            src={item.image}
+            alt={item.name}
+          />
+        </div>
+  
+        {/* Card Content */}
+        <div className="p-4">
+          <h3 className="font-semibold text-lg mb-2 text-gray-800 dark:text-white">{item.name}</h3>
+          <p className="text-gray-600 text-sm mb-4 line-clamp-2 dark:text-gray-300">{item.description}</p>
           
-        
-      <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      {/* Card Image */}
-      <img class="p-8 rounded-t-lg" src={item.imageSrc} />
-      
-      {/* Card Content */}
-      <div className="px-6 py-4">
-        <a href="#">
-            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{item.name} </h5>
-        </a>
-      </div>
-      <div className="px-6 py-4">
-        <a href="#">
-            <h5 class="text-x font-semibold tracking-tight text-gray-900 dark:text-white">{item.description} </h5>
-        </a>
-      </div>
+          <div className="flex justify-end">
+          <button type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Order</button>
 
-      {/* Card Footer (Button) */}
-      <div className="px-6 pt-4 pb-2 m-4">
-        <button>
-          <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
-        </button>
+          </div>
+        </div>
       </div>
-    </div>
     ))}
-      </ul>
-    </div>
+  </div>
+  
+
+   
   );
 };
 

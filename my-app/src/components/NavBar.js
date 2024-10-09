@@ -11,27 +11,36 @@ const Navbar = () => {
     };
       
   return (
-    <nav className=" bg-white p-4 shadow">
-      <div className="container mx-auto flex justify-between items-center ">
-        <div className="text-dark text-2xl font-bold flex mx-5 ">
-          <a href="#">Sina</a>
-          <img className='m-2' src='#'/>
+    <nav className=" bg-white shadow ">
+
+        <div className="  items-center bg-black p-2 ">
+            <div className="flex space-x-4 mx-5 items-center flex justify-center">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={faInstagram} className="text-white text-x hover:text-blue-500" />
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={faTelegram} className="text-white text-x hover:text-blue-400" />
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={faWhatsapp} className="text-white text-x hover:text-pink-500" />
+            </a>
         </div>
-        <div className="flex space-x-4 mx-5">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-            <FontAwesomeIcon icon={faInstagram} className="text-dark text-x hover:text-blue-500" />
-          </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-            <FontAwesomeIcon icon={faTelegram} className="text-dark text-x hover:text-blue-400" />
-          </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-            <FontAwesomeIcon icon={faWhatsapp} className="text-dark text-x hover:text-pink-500" />
-          </a>
+        
         </div>
-        <button type="button" class=" p-1 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"  onClick={handleSubscribe}> 
-            subscribe 
-            </button>
-      </div>
+
+        <div className="container mx-auto flex justify-between items-center py-2 ">
+            <div className="text-dark text-2xl font-bold flex mx-5 ">
+                <a href="#">Sina</a>
+                <img className='m-2' src='#'/>
+            </div>
+            <div className="flex space-x-4 mx-5">
+                
+            <button type="button" class=" button mx-5"  onClick={handleSubscribe}> 
+                Register 
+                </button>
+            </div>
+        </div>
+      
     </nav>
   );
 }
