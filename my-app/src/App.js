@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from './components/NavBar';
+import RegistrationForm from './components/RegistrationForm';
 
 const App = () => {
   const [showForm, setShowForm] = useState(false);
@@ -9,7 +9,7 @@ const App = () => {
   };
 
   return (
-    <Navbar/>
+    <RegistrationForm/>
   );
 };
 
