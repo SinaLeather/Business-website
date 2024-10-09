@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import RegistrationForm from './components/RegistrationForm'; 
+import Navbar from './components/NavBar';
 
 const App = () => {
   const [showForm, setShowForm] = useState(false);
@@ -9,14 +9,7 @@ const App = () => {
   };
 
   return (
-    <div>
-      {/* Conditionally render the button or the registration form */}
-      {!showForm ? (
-        <button onClick={handleButtonClick}>Contact for Product</button>
-      ) : (
-        <RegistrationForm />
-      )}
-    </div>
+    <Navbar/>
   );
 };
 
