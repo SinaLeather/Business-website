@@ -1,17 +1,18 @@
 import React from 'react';
-import RegistrationForm from './RegistrationForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faTelegram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { useNavigate } from 'react-router-dom';
+
 
 
 
 
 
 const Navbar = () => {
-    const RegistrationForm = () => {
-        console.log('Subscribe button clicked!');
-        alert('Registration form will open here!');
-      };
+    const navigate = useNavigate();
+    const handleSubscribe = () => {
+      navigate('/register');
+    };
       
   return (
     <nav className=" bg-white p-4 shadow">
@@ -31,8 +32,9 @@ const Navbar = () => {
             <FontAwesomeIcon icon={faWhatsapp} className="text-dark text-x hover:text-pink-500" />
           </a>
         </div>
-        <link to="RegistrationForm"><button type="button" class=" p-1 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" > subscribe </button>
-        </link>
+        <button type="button" class=" p-1 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"  onClick={handleSubscribe}> 
+            subscribe 
+            </button>
       </div>
     </nav>
   );
