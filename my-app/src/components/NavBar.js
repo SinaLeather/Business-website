@@ -2,7 +2,6 @@ import React from 'react';
 import RegistrationForm from './RegistrationForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faTelegram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-import {link} from 'react-router-dom'
 
 
 
