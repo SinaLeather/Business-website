@@ -1,6 +1,9 @@
 import React from 'react';
+import RegistrationForm from './RegistrationForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faTwitter, faInstagram, faTelegram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { faInstagram, faTelegram, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+
+
 
 const Navbar = () => {
   return (
@@ -23,6 +26,9 @@ const Navbar = () => {
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faWhatsapp} className="text-dark text-x hover:text-pink-500" />
           </a>
+
+            <button type="button" class=" p-1 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"  onClick={RegistrationForm}> subscribe </button>
+
         </div>
       </div>
     </nav>
