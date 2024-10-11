@@ -32,7 +32,7 @@ const RegistrationForm = () => {
     <section className='container '>
       <div className='  justify-center text-center my-[100px] '>
         <h1 className='font-bold uppercase text-gray-700 text-6xl'>Hello!</h1>
-        <h2 className='font-semibold  text-gray-600 text-xl'> You Can find Our news By only registering </h2>
+        <h2 className='font-semibold  text-gray-600 text-xl'> You Can find Our news By only register </h2>
       </div>
     <div  className=' my-[150px] dark:bg-gray-800 justify-center '>
 
