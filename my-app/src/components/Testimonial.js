@@ -7,8 +7,6 @@ const Testimonial = () => {
   return (
     <>
     <header>
-  
-
   <div
     class="relative h-[350px] overflow-hidden bg-[url('https://tecdn.b-cdn.net/img/new/slides/041.webp')] bg-cover bg-[50%] bg-no-repeat">
     <div
@@ -77,7 +75,7 @@ const Testimonial = () => {
   </div>
 </div>
 
-<footer class="flex flex-col items-center bg-zinc-50 text-center text-surface dark:bg-neutral-700 dark:text-white"> 
+<footer class="flex flex-col items-center bg-zinc-50 text-center text-surface dark:bg-gray-500 dark:text-white"> 
   <div className="  items-center  p-2 ">
             <div className="flex space-x-4 mx-5 items-center flex justify-center">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
@@ -92,7 +90,7 @@ const Testimonial = () => {
       </div>
       </div>
 
-  <div class="w-full bg-black/5 p-4 text-center">
+  <div class="w-full dark:bg-gray-900  p-4 text-center">
     © 2025 Copyright:
     <a href="#">Sina Leather</a>
   </div>

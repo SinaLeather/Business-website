@@ -13,11 +13,10 @@ const App = () => {
    <>  
   <Router>
   <Routes>
-    <Route path="/register" element={<RegistrationForm />} />
+    <Route path="/register" element={<RegistrationForm />}  />
     <Route path="/" element={<Navbar />} />
   </Routes>
-  </Router>
-  ,
+  </Router>,
   <HeroSecition />,
   <CategorySection />,
   <Card />,
