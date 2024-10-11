@@ -15,13 +15,13 @@ const Navbar = () => {
 
         <div className="  items-center bg-black p-2 ">
             <div className="flex space-x-4 mx-5 items-center flex justify-center">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faInstagram} className="text-white text-x hover:text-blue-500" />
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://telegram.org" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faTelegram} className="text-white text-x hover:text-blue-400" />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faWhatsapp} className="text-white text-x hover:text-pink-500" />
             </a>
         </div>

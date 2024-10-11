@@ -1,64 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import { supabase } from '../supabaseClient';
 
-const ProductDetail = ({ id }) => {
+const ProductDetail = () => {
+  const { id } = useParams();
   const [product, setProduct] = useState(null);
-  const [order, setOrder] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchProductAndOrder = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.post(
-          `https://your-supabase-instance.supabase.co/api/v1/products/${id}`,
-          {}
-        );
-        setProduct(response.data.product);
-        setOrder(response.data.order);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
+    const fetchProduct = async () => {
+      const { data, error } = await supabase
+        .from('product')
+        .select('*')
+        .eq('id', id);
+
+      if (error) {
+        console.error('Error fetching product:', error);
+      } else {
+        setProduct(data[0]);
       }
+      setLoading(false);
     };
-    fetchProductAndOrder();
+
+    fetchProduct();
   }, [id]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  if (loading) return <p>Loading...</p>;
 
-  if (!product || !order) {
-    return <div>Product or order not found</div>;
-  }
-
-  const handleUpdateOrder = async () => {
-    // Update order logic goes here
-    // For example, you can update the quantity or total
-    const updatedOrder = { ...order, quantity: order.quantity + 1 };
-    try {
-      const response = await axios.post(
-        `https://your-supabase-instance.supabase.co/api/v1/orders/${order.id}`,
-        updatedOrder
-      );
-      setOrder(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  if (!product) return <p>Product not found</p>;
 
   return (
-    <div>
-      <h1>{product.name}</h1>
-      <p>{product.description}</p>
-      <p>Price: {product.price}</p>
-      <img src={product.image} alt={product.name} />
-      <h2>Order Details</h2>
-      <p>Quantity: {order.quantity}</p>
-      <p>Total: {order.total}</p>
-      <button onClick={handleUpdateOrder}>Update Order</button>
-    </div>
+    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+    <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
+    <img src={product.image} alt={product.name} className="w-full mb-4 rounded-lg" />
+    <p className="text-lg text-gray-600">{product.description}</p>
+    {/* Add more product details as needed */}
+  </div>
   );
 };
 
