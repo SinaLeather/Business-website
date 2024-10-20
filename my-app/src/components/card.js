@@ -42,6 +42,8 @@ const Card = ({ customerId }) => {
   return (
     <div className="flex flex-wrap gap-6 p-6">
       {data.map((item) => (
+        <Link to={`/product/${item.id}`}>
+        <div className="flex justify-end">
         <div
           key={item.id}
           className="w-[340px] bg-blue-200 rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 ease-in-out dark:bg-gray-900"
@@ -62,18 +64,18 @@ const Card = ({ customerId }) => {
               {item.description}
             </p>
 
-            <div className="flex justify-end">
-              <Link to={`/product/${item.id}`}>
-                <button
+            
+                <h1
                   type="button"
-                  className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                  className=" text-white"
                 >
                   Order
-                </button>
-              </Link>
+                </h1>
             </div>
           </div>
         </div>
+        </Link>
+
       ))}
 
       {selectedProduct && (

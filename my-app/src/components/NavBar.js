@@ -31,8 +31,7 @@ const Navbar = () => {
         <div className="container mx-auto flex justify-between items-center py-2 ">
             <div className="text-dark text-2xl font-bold flex mx-5 ">
                 <a href="#">Sina</a>
-                <img className='m-2' src='#'/>
-            </div>
+                </div>
             <div className="flex space-x-4 mx-5">
                 
             <button type="button" class=" button mx-5"  onClick={handleSubscribe}> 
