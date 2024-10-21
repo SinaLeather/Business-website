@@ -1,236 +1,274 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
-import { useNavigate } from 'react-router-dom';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faPhone, faEnvelope, faHome, faBoxes, faShoppingCart, faCheckCircle ,faHomeUser } from '@fortawesome/free-solid-svg-icons';
 
 const ProductDetail = () => {
-  const { id } = useParams();
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [quantity, setQuantity] = useState(1);
-  const [email, setEmail] = useState('');
-  const [address, setAddress] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState('');
+    const { id } = useParams();
+    const navigate = useNavigate();
+    const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [name, setName] = useState('');
+    const [phone, setPhone] = useState('');
+    const [quantity, setQuantity] = useState(1);
+    const [email, setEmail] = useState('');
+    const [address, setAddress] = useState('');
+    const [color, setColor] = useState('');
+    const [colors, setColors] = useState([]);
+    const [submitted, setSubmitted] = useState(false);
+    const [error, setError] = useState('');
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      const { data, error } = await supabase
-        .from('product')
-        .select('*')
-        .eq('id', id)
-        .single(); // Use .single() to get a single object
+    // Fetch product and colors on component mount
+    useEffect(() => {
+        const fetchProduct = async () => {
+            const { data, error } = await supabase
+                .from('product')
+                .select('*')
+                .eq('id', id)
+                .single();
 
-      if (error) {
-        console.error('Error fetching product:', error);
-        setLoading(false);
-        return;
-      }
+            if (error) {
+                console.error('Error fetching product:', error);
+                setLoading(false);
+                return;
+            }
 
-      if (!data) {
-        setLoading(false);
-        return; // Handle case where product is not found
-      }
+            if (!data) {
+                setLoading(false);
+                return;
+            }
 
-      setProduct(data);
-      setLoading(false);
+            setProduct(data);
+            setLoading(false);
+        };
+
+        const fetchColors = async () => {
+          const { data, error } = await supabase
+              .from('colors')
+              .select('*');
+      
+          if (error) {
+              console.error('Error fetching colors:', error);
+              return;
+          }
+      
+          console.log('Fetched colors:', data); // Add this line to check the fetched colors
+          setColors(data);
+      };
+
+        fetchProduct();
+        fetchColors();
+    }, [id]);
+
+    const handleClick = () => {
+        navigate('/');
     };
 
-    fetchProduct();
-  }, [id]);
-
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      setError('');
   
-  const navigate = useNavigate();
-  const handleClick = () => {
-    navigate('/');
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    if (name === '' || email === '' || phone === '') {
-      setError('All fields are required!');
-      return;
-    }
-
-    try {
-      const { data, error } = await supabase
-        .from('Order')
-        .insert({
+      if (!name || !email || !phone || !address || !color) {
+          setError('All fields are required!');
+          return;
+      }
+  
+      // Log the data being sent to Supabase
+      console.log({
           name,
           phone,
           quantity,
           product_id: product.id,
           email,
           address,
-        });
-
-      if (error) {
-        setError('Error submitting the form. Try again. ' + error.message);
-      } else {
-        setSubmitted(true);
-        setError('');
+          color,
+      });
+  
+      try {
+          const { data, error } = await supabase
+              .from('Order') // Ensure this is the correct table name
+              .insert({
+                  name,
+                  phone,
+                  quantity,
+                  product_id: product.id,
+                  email,
+                  address,
+                  color,
+              })
+              .select();
+  
+          if (error) {
+              throw error;
+          }
+  
+          console.log('Order submitted successfully:', data);
+          setSubmitted(true);
+      } catch (error) {
+          console.error('Submission error:', error);
+          setError('Error submitting the form. Please try again. ' + error.message);
       }
-    } catch (error) {
-      console.error('Submission error:', error);
-      setError('Error submitting the form. Try again.');
-    }
   };
 
-  if (loading) return <p>Loading...</p>;
+    if (loading) return <p>Loading...</p>;
+    if (!product) return <p>Product not found</p>;
 
-  if (!product) return <p>Product not found</p>;    
 
-  return (
-    <section className="container mx-auto p-6">
-  <div className="bg-gradient-to-r from-gray-800 to-gray-900 shadow-lg rounded-lg p-8">
-    {!submitted ? (
-      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <div className="mb-5">
-            <img src={product.image} alt={product.name} className="w-full rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300" />
-          </div>
-        </div>
-        <div>
-          <div className="text-center mb-8">
-            <h1 className="font-extrabofld uppercase text-teal-400 text-2xl">{product.name}</h1>
-            <h2 className="font-medium text-gray-300">{product.description}</h2>
-          </div>
-          <div className="space-y-2">
-            <div>
-              <label className="block mb-2 text-sm font-medium text-gray-300" htmlFor="name">Name</label>
-              <input
-                type="text"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="bg-gray-700 border border-gray-600 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 w-full p-2.5 text-white"
-                aria-label="Name"
-                placeholder="Name"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block mb-2 text-sm font-medium text-gray-300" htmlFor="email">Your email</label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="bg-gray-700 border border-gray-600 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 w-full p-2.5 text-white"
-                aria-label="Email"
-                placeholder="name@example.com"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block mb-2 text-sm font-medium text-gray-300" htmlFor="phone">Phone</label>
-              <input
-                type="tel"
-                id="phone"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="bg-gray-700 border border-gray-600 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 w-full p-2.5 text-white"
-                aria-label="Phone"
-                placeholder="Phone"
-                required
-              />
-            </div>
-
-                        
-            <button id="dropdownCheckboxButton" data-dropdown-toggle="dropdownDefaultCheckbox" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Dropdown checkbox <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-            </svg>
-            </button>
-
-            <div id="dropdownDefaultCheckbox" class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600">
-                <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownCheckboxButton">
-                  <li>
-                    <div class="flex items-center">
-                      <input id="checkbox-item-1" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"/>
-                      <label for="checkbox-item-1" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default checkbox</label>
+    return (
+      <section className="container mx-auto p-6 font-sans">
+        <div className="bg-white shadow-lg rounded-3xl p-8 max-w-2xl mx-auto">
+          {!submitted ? (
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="text-center mb-8">
+                <img 
+                  src={product.image} 
+                  alt={product.name} 
+                  className="w-64 h-64 object-cover rounded-full shadow-md mx-auto mb-4 border-4 border-gray-200" 
+                />
+                <h1 className="font-bold text-black text-3xl">{product.name}</h1>
+                <h2 className="font-medium text-gray-600 text-xl">${product.price}</h2>
+              </div>
+              
+              <div className="space-y-4">
+                <div>
+                  <label className="block mb-2 text-gray-700" htmlFor="name">
+                    <FontAwesomeIcon icon={faHomeUser} className="mr-2 text-gray-500" />
+                    Name:
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full p-3 text-gray-700 bg-white border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400"
+                    placeholder="Enter your name"
+                    required
+                  />
+                </div>
+    
+                <div>
+                  <label className="block mb-2 text-gray-700" htmlFor="phone">
+                    <FontAwesomeIcon icon={faPhone} className="mr-2 text-gray-500" />
+                    Phone:
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="w-full p-3 text-gray-700 bg-white border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400"
+                    placeholder="Enter your phone number"
+                    required
+                  />
+                </div>
+    
+                <div>
+                  <label className="block mb-2 text-gray-700" htmlFor="email">
+                    <FontAwesomeIcon icon={faEnvelope} className="mr-2 text-gray-500" />
+                    Email:
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full p-3 text-gray-700 bg-white border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400"
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+    
+                <div>
+                  <label className="block mb-2 text-gray-700" htmlFor="address">
+                    <FontAwesomeIcon icon={faHome} className="mr-2 text-gray-500" />
+                    Address:
+                  </label>
+                  <textarea
+                    id="address"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    className="w-full p-3 text-gray-700 bg-white border border-gray-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-gray-400"
+                    placeholder="Enter your address"
+                    required
+                  />
+                </div>
+    
+                <div>
+                  <label className="block mb-2 text-sm font-medium text-gray-300" htmlFor="color">Select Color</label>
+                  <select
+                    id="color"
+                    value={color}
+                    onChange={(e) => setColor(e.target.value)}
+                    className="bg-gray-700 border border-gray-600 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 w-full p-2.5 text-white"
+                    aria-label="Color"
+                    required
+                >
+                    <option value="">Select a color</option>
+                    {colors.map((color) => (
+                        <option key={color.id} value={color.name}>
+                            {color.name}
+                        </option>
+                    ))}
+                </select>
+                </div>
+    
+                <div>
+                  <label className="block mb-2 text-gray-700" htmlFor="quantity">
+                    <FontAwesomeIcon icon={faBoxes} className="mr-2 text-gray-500" />
+                    Quantity:
+                  </label>
+                  <input
+                    type="number"
+                    id="quantity"
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
+                    className="w-full p-3 text-gray-700 bg-white border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400"
+                    placeholder="Enter the quantity"
+                    required
+                  />
+                </div>
+    
+                <div className="flex justify-center">
+                  <button
+                    type="submit"
+                    className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  >
+                    <FontAwesomeIcon icon={faShoppingCart} className="mr-2" />
+                    Buy Now
+                  </button>
+                </div>
+              </div>
+            </form>
+          ) : (
+            <section className="container mx-auto p-6 font-sans">
+            <div className="bg-white rounded-3xl p-8 max-w-2xl mx-auto">
+                {!submitted ? (
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                        {/* Form contents... */}
+                    </form>
+                ) : (
+                    <div className="text-center">
+                        <FontAwesomeIcon icon={faCheckCircle} className="text-teal-500 text-4xl mb-4" />
+                        <h1 className="font-bold text-black text-3xl">Thank you for your order!</h1>
+                        <p className="text-gray-600 text-lg">Your order has been successfully placed.</p>
+                        <div className="flex justify-center mt-4">
+                            <button
+                                onClick={handleClick}
+                                className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:ring-2 focus:ring-teal-500"
+                            >
+                                Go Back Home
+                            </button>
+                        </div>
                     </div>
-                  </li>
-                  <li>
-                    <div class="flex items-center">
-                        <input checked id="checkbox-item-2" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"/>
-                        <label for="checkbox-item-2" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Checked state</label>
-                      </div>
-                  </li>
-                  <li>
-                    <div class="flex items-center">
-                      <input id="checkbox-item-3" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"/>
-                      <label for="checkbox-item-3" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default checkbox</label>
-                    </div>
-                  </li>
-                </ul>
+                )}
             </div>
-
-
-
-
-            <div>
-              <label className="block mb-2 text-sm font-medium text-gray-300" htmlFor="quantity">Quantity</label>
-              <input
-                type="number"
-                id="quantity"
-                value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
-                className="bg-gray-700 border border-gray-600 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 w-full p-2.5 text-white"
-                aria-label="Quantity"
-                placeholder="Quantity"
-                required
-              />
-            </div>
-
-            
-
-            <div>
-              <label className="block mb-2 text-sm font-medium text-gray-300" htmlFor="address">Address</label>
-              <input
-                type="text"
-                id="address"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                className="bg-gray-700 border border-gray-600 text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 w-full p-2.5 text-white"
-                aria-label="Address"
-                placeholder="Address"
-                required
-              />
-            </div>
-
-            {error && <p className="text-red-500">{error}</p>}
-
-            <div className="flex items-center mt-5">
-              <button
-                type="submit"
-                className="bg-teal-500 hover:bg-teal-600 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center text-white transition-transform transform hover:scale-105"
-              >
-                Place Order
-              </button>
-            </div>
-          </div>
+        </section>
+          )}
         </div>
-      </form>
-    ) : (
-      <div className="text-center">
-        <p class ="text-gray-300">Thank you for placing your order!</p>
-        <button 
-        className=" m-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-gray-600 hover:bg-white-800"
-        onClick={handleClick}>
-        Go to Home
-      </button>
-      </div>
-       
-    )}
-  </div>
-</section>
-  );
+      </section>
+    );
+  
 };
 
 export default ProductDetail;
