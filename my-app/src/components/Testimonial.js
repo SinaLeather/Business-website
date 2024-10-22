@@ -27,52 +27,53 @@ const Testimonial = () => {
     </div>
   </div>
 </header>
-    <div class=" flex items-center justify-center">   <p class="text-6xl text-gray-900 my-5">Gallary</p>
+<div class="flex items-center justify-center">
+    <p class="text-6xl text-gray-900 my-5">Gallery</p>
+</div>
 
+<div class="container mx-auto px-5 py-2 lg:px-32 lg:pt-24">
+    <div class="-m-1 flex flex-wrap md:-m-2">
+        <div class="flex w-1/2 flex-wrap">
+            <div class="w-1/2 p-1 md:p-2">
+                <img
+                    alt="gallery"
+                    class="block h-full w-full rounded-lg object-cover object-center"
+                    src="https://cdn01.pinkoi.com/product/zkRWCuo8/2/640x530.jpg" />
+            </div>
+            <div class="w-1/2 p-1 md:p-2">
+                <img
+                    alt="gallery"
+                    class="block h-full w-full rounded-lg object-cover object-center"
+                    src="https://zqqzpfxqiwfbsfvfuqcu.supabase.co/storage/v1/object/public/images/photo_2024-06-28_19-25-19-transformed.jpeg" />
+            </div>
+            <div class="w-full p-1 md:p-2">
+                <img
+                    alt="gallery"
+                    class="block h-full w-full rounded-lg object-cover object-center"
+                    src="https://www.thefoxesden.co.nz/cdn/shop/products/bagformenOnlineNZ.jpg?v=1657494870" />
+            </div>
+        </div>
+        <div class="flex w-1/2 flex-wrap">
+            <div class="w-full p-1 md:p-2">
+                <img
+                    alt="gallery"
+                    class="block h-full w-full rounded-lg object-cover object-center"
+                    src="https://i.pinimg.com/736x/e8/c8/e1/e8c8e1976d1ad76f0d5940b0d58d8497.jpg" />
+            </div>
+            <div class="w-1/2 p-1 md:p-2">
+                <img
+                    alt="gallery"
+                    class="block h-full w-full rounded-lg object-cover object-center"
+                    src="https://zqqzpfxqiwfbsfvfuqcu.supabase.co/storage/v1/object/public/images/photo_2024-06-28_19-25-21-transformed.jpeg" />
+            </div>
+            <div class="w-1/2 p-1 md:p-2">
+                <img
+                    alt="gallery"
+                    class="block h-full w-full rounded-lg object-cover object-center"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR75ljRyWXkyoRgVG_yMMa1hwZXdNDIhEg_unYCkXsjKtO51rPKDAFTRFAs49UIG0oUL-E&usqp=CAU" />
+            </div>
+        </div>
     </div>
-  <div class="container  mx-auto px-5 py-2 lg:px-32 lg:pt-24">
-  <div class="-m-1 flex flex-wrap md:-m-2">
-    <div class="flex w-1/2 flex-wrap">
-      <div class="w-1/2 p-1 md:p-2">
-        <img
-          alt="gallery"
-          class="block h-full w-full rounded-lg object-cover object-center"
-          src="https://incanda.co.za/wp-content/uploads/2022/08/RCreate-Web-Square-Drk-1365-1-scaled.jpg" />
-      </div>
-      <div class="w-1/2 p-1 md:p-2">
-        <img
-          alt="gallery"
-          class="block h-full w-full rounded-lg object-cover object-center"
-          src="https://i.pinimg.com/1200x/3d/9d/ea/3d9dea4f5691bcc2d571c5dea3e7e02b.jpg" />
-      </div>
-      <div class="w-full p-1 md:p-2">
-        <img
-          alt="gallery"
-          class="block h-full w-full rounded-lg object-cover object-center"
-          src="https://buffalojackson.com/cdn/shop/products/Roosevelt_Buffalo_Leather_Satchel_Messenger_Bag_Large_Dark_Oak_1-copy_900x900_crop_center.jpg?v=1571710380" />
-      </div>
-    </div>
-    <div class="flex w-1/2 flex-wrap">
-      <div class="w-full p-1 md:p-2">
-        <img
-          alt="gallery"
-          class="block h-full w-full rounded-lg object-cover object-center"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWhdVHLZ7U60ljfiJ3VIulcg3XIquUG3uB9w&s" />
-      </div>
-      <div class="w-1/2 p-1 md:p-2">
-        <img
-          alt="gallery"
-          class="block h-full w-full rounded-lg object-cover object-center"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrrYvZZ1jEjr567qk83W2v_zKHzdDydD0YBw&s" />
-      </div>
-      <div class="w-1/2 p-1 md:p-2">
-        <img
-          alt="gallery"
-          class="block h-full w-full rounded-lg object-cover object-center"
-          src="https://5.imimg.com/data5/SELLER/Default/2022/2/LP/WO/UD/71278130/10-3-copy-2-500x500.jpg" />
-      </div>
-    </div>
-  </div>
 </div>
 
 <footer class="flex flex-col items-center bg-zinc-50 text-center text-surface dark:bg-gray-500 dark:text-white"> 

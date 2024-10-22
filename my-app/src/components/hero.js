@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 
 const HeroSecition = () => {
   return (
@@ -16,12 +18,15 @@ const HeroSecition = () => {
               </p>
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                 <div className="rounded-md shadow">
+
+              <Link to="/product">
                 <button
-                className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-green-600 bg-gray-100 hover:bg-gray-200 md:py-4 md:text-lg md:px-10"
-                
-              >
-                 Products
-              </button>
+                  className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-green-600 bg-gray-100 hover:bg-gray-200 md:py-4 md:text-lg md:px-10"
+                >
+                  Products
+                </button>
+              </Link>
+
 
                 </div>
                 <div className="mt-3 sm:mt-0 sm:ml-3">
@@ -41,7 +46,7 @@ const HeroSecition = () => {
       <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
         <img
           className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
-          src="https://rootinstyle.com/wp-content/uploads/2021/01/Handmade-leather-bags3-1.png "
+          src="https://zqqzpfxqiwfbsfvfuqcu.supabase.co/storage/v1/object/sign/images/Untitled%20design%20(1).png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZXMvVW50aXRsZWQgZGVzaWduICgxKS5wbmciLCJpYXQiOjE3Mjk2MjA0NzUsImV4cCI6MjA0NDk4MDQ3NX0.BFEUDOs_jUuodDTfgOFO1aozEjqQ7R83JPWJvRR7ggk"
           alt="Smartwatch promo"
         />
       </div>

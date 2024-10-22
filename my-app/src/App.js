@@ -9,6 +9,7 @@ import ProductDetail from './components/ProductDetail';
 import AdminPage from './components/AdminPage';
 import LoginPage from './components/LoginPage';
 import AddProduct from './components/AddProduct';
+import ProductPage from './components/product';
 
 const Home = () => (
   <div>
@@ -37,6 +38,7 @@ const App = () => {
         <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/addproduct" element={<AddProduct />} />
+        <Route path="/product" element={<ProductPage />} />
         
       </Routes>
     </>
