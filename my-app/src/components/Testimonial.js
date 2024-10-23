@@ -16,12 +16,13 @@ const Testimonial = () => {
           <h1 class="mb-6 text-5xl font-bold">Sina Leather</h1>
           <h3 class="mb-8 text-3xl font-bold">Crafted with care, built to last leather that tells your story.</h3>
           <button
-            type="button"
-            class="inline-block rounded border-2 border-neutral-50 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-300 hover:text-neutral-200 focus:border-neutral-300 focus:text-neutral-200 focus:outline-none focus:ring-0 active:border-neutral-300 active:text-neutral-200 dark:hover:bg-neutral-600 dark:focus:bg-neutral-600"
-            data-twe-ripple-init
-            data-twe-ripple-color="light">
-            Call to action
-          </button>
+          type="button"
+          class="inline-block rounded border-2 border-neutral-50 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-300 hover:text-neutral-200 focus:border-neutral-300 focus:text-neutral-200 focus:outline-none focus:ring-0 active:border-neutral-300 active:text-neutral-200 dark:hover:bg-neutral-600 dark:focus:bg-neutral-600"
+          data-twe-ripple-init
+          data-twe-ripple-color="light"
+          onclick="window.location.href='tel:+251911407749'">
+          Call to action
+           </button>
         </div>
       </div>
     </div>
